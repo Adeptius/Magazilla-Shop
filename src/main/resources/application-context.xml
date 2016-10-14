@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="main" class="ua.adeptius.magazilla.Main"
+          init-method="init"
+          p:sessionFactory-ref="sessionFactory"
+          p:goodsController-ref="goodsController"
+          p:countryController-ref="countryController"/>
+
+    <bean id="goodsDao" class="ua.adeptius.magazilla.dao.HibernateGoodsDao"
+          p:sessionFactory-ref="sessionFactory"/>
+    <bean id="countryDao" class="ua.adeptius.magazilla.dao.HibernateCountryDao"
+          p:sessionFactory-ref="sessionFactory"/>
+
+    <bean id="goodsController" class="ua.adeptius.magazilla.controllers.GoodsController"
+          p:goodsDao-ref="goodsDao"/>
+    <bean id="countryController" class="ua.adeptius.magazilla.controllers.CountryController"
+          p:countryDao-ref="countryDao"/>
+
+
+</beans>
