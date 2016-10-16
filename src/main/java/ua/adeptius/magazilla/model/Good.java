@@ -24,7 +24,7 @@ public class Good {
     @Enumerated(EnumType.STRING)
     private Category category;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "region")
     @Enumerated(EnumType.STRING)
     private Country country;
@@ -49,6 +49,26 @@ public class Good {
         this.country = country;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
     @Override
     public String toString() {
         return "Good{" +
@@ -56,6 +76,7 @@ public class Good {
                 ", title='" + title + '\'' +
                 ", price=" + price +
                 ", category=" + category.name +
+                ", country=" + country +
                 '}';
     }
 }

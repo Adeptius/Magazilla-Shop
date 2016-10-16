@@ -5,10 +5,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ua.adeptius.magazilla.controllers.CountryController;
 import ua.adeptius.magazilla.controllers.GoodsController;
-import ua.adeptius.magazilla.model.Category;
 import ua.adeptius.magazilla.model.Country;
 import ua.adeptius.magazilla.model.Good;
-import ua.adeptius.magazilla.model.Region;
 
 import java.util.ArrayList;
 
@@ -37,19 +35,25 @@ public class Main {
         Main main = context.getBean(Main.class);
 
 
-        Country country = new Country(Region.CHINA);
-        main.countryController.addCountry(country);
+//        List<Country> countries = main.countryController.getAllCountryes();
+//        countries.forEach(System.out::println);
 
-        Good good = new Good();
-        good.setCategory(Category.BAGS);
-        good.setPrice(5);
-        good.setTitle("Сумка 15 с алиэкспресс");
-        good.setCountry(country);
+//        System.out.println(country);
 
-        main.goodsController.addGood(good);
+//        main.countryController.addCountry(new Country("UKRAINE"));
+//
+//        Good good = new Good();
+//        good.setCategory(Category.BAGS);
+//        good.setPrice(16);
+//        good.setTitle("Украинский рюкзак");
+//        good.setCountry(main.countryController.findCountryByName("UKRAINE"));
+//
+//        main.goodsController.addGood(good);
 
-        ArrayList<Good> goods = main.goodsController.getGoods();
+        Country usa = main.countryController.findCountryByName("USA");
+        ArrayList<Good> goods = main.goodsController.getAllGoodsFromCountry(usa);
         goods.forEach(System.out::println);
+
     }
 
     private void init(){

@@ -2,6 +2,7 @@ package ua.adeptius.magazilla.controllers;
 
 import org.springframework.transaction.annotation.Transactional;
 import ua.adeptius.magazilla.dao.HibernateGoodsDao;
+import ua.adeptius.magazilla.model.Country;
 import ua.adeptius.magazilla.model.Good;
 
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public class GoodsController {
     }
 
     @Transactional
-    public ArrayList<Good> getGoods(){
+    public ArrayList<Good> getAllGoods(){
         return goodsDao.getAllGoods();
     }
 
@@ -24,4 +25,14 @@ public class GoodsController {
         goodsDao.save(good);
     }
 
+
+    public ArrayList<Good> getAllGoodsFromCountry(Country country) {
+        ArrayList<Good> allGoods = getAllGoods();
+        ArrayList<Good> goodsFromNeededCountry = new ArrayList<>();
+        for (Good good : allGoods) {
+            if (good.getCountry().getRegion().equals(country.getRegion()))
+                goodsFromNeededCountry.add(good);
+        }
+        return goodsFromNeededCountry;
+    }
 }
