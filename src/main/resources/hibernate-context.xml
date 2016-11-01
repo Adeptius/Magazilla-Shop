@@ -13,6 +13,8 @@
           p:maxPoolSize="10"
           p:acquireIncrement="1"/>
 
+
+
     <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"
           p:dataSource-ref="dataSource"
           p:packagesToScan="ua.adeptius.magazilla"
